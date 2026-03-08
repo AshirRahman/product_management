@@ -22,9 +22,8 @@ class CourseOnline extends StatelessWidget {
           initialRoute: AppRoute.splashScreen,
           getPages: AppRoute.routes,
           initialBinding: ControllerBinder(),
-          themeMode: ThemeMode.system,
+          themeMode: ThemeMode.light,
           theme: AppTheme.lightTheme,
-          darkTheme: AppTheme.darkTheme,
         );
       },
     );
