@@ -12,17 +12,63 @@ class SignupController extends GetxController {
   RxBool obscurePassword = true.obs;
   RxBool isLoading = false.obs;
 
+  RxString emailError = ''.obs;
+  RxString nameError = ''.obs;
+  RxString passwordError = ''.obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    emailController.addListener(() {
+      if (emailError.isNotEmpty) emailError.value = '';
+    });
+    nameController.addListener(() {
+      if (nameError.isNotEmpty) nameError.value = '';
+    });
+    passwordController.addListener(() {
+      if (passwordError.isNotEmpty) passwordError.value = '';
+    });
+  }
+
   void togglePassword() {
     obscurePassword.value = !obscurePassword.value;
   }
 
-  Future<void> signup() async {
-    if (emailController.text.isEmpty ||
-        nameController.text.isEmpty ||
-        passwordController.text.isEmpty) {
-      Get.snackbar("Error", "All fields are required");
-      return;
+  bool _validate() {
+    bool valid = true;
+    final email = emailController.text.trim();
+    final name = nameController.text.trim();
+    final password = passwordController.text;
+
+    if (email.isEmpty) {
+      emailError.value = 'Email is required';
+      valid = false;
+    } else if (!GetUtils.isEmail(email)) {
+      emailError.value = 'Enter a valid email address';
+      valid = false;
     }
+
+    if (name.isEmpty) {
+      nameError.value = 'Full name is required';
+      valid = false;
+    }
+
+    if (password.isEmpty) {
+      passwordError.value = 'Password is required';
+      valid = false;
+    } else if (password.length < 8) {
+      passwordError.value = 'Password must be at least 8 characters';
+      valid = false;
+    } else if (!RegExp(r'(?=.*[a-zA-Z])(?=.*[0-9])').hasMatch(password)) {
+      passwordError.value = 'Include both letters and numbers';
+      valid = false;
+    }
+
+    return valid;
+  }
+
+  Future<void> signup() async {
+    if (!_validate()) return;
 
     isLoading.value = true;
 
@@ -43,5 +89,13 @@ class SignupController extends GetxController {
     } else {
       Get.snackbar("Error", response.errorMessage);
     }
+  }
+
+  @override
+  void onClose() {
+    emailController.dispose();
+    nameController.dispose();
+    passwordController.dispose();
+    super.onClose();
   }
 }

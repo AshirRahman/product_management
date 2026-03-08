@@ -61,6 +61,9 @@ class ResetPasswordScreen extends StatelessWidget {
                   isPassword: true,
                   obscureText: controller.obscurePassword.value,
                   onToggle: controller.togglePassword,
+                  errorText: controller.passwordError.value.isEmpty
+                      ? null
+                      : controller.passwordError.value,
                 ),
               ),
 
@@ -75,6 +78,9 @@ class ResetPasswordScreen extends StatelessWidget {
                   isPassword: true,
                   obscureText: controller.obscureConfirmPassword.value,
                   onToggle: controller.toggleConfirmPassword,
+                  errorText: controller.confirmPasswordError.value.isEmpty
+                      ? null
+                      : controller.confirmPasswordError.value,
                 ),
               ),
 

@@ -12,6 +12,7 @@ class CustomTextField extends StatelessWidget {
   final VoidCallback? onToggle;
   final TextInputType keyboardType;
   final Widget? suffixIcon;
+  final String? errorText;
 
   const CustomTextField({
     super.key,
@@ -23,10 +24,12 @@ class CustomTextField extends StatelessWidget {
     this.onToggle,
     this.keyboardType = TextInputType.text,
     this.suffixIcon,
+    this.errorText,
   });
 
   @override
   Widget build(BuildContext context) {
+    final hasError = errorText != null && errorText!.isNotEmpty;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -59,18 +62,31 @@ class CustomTextField extends StatelessWidget {
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30.r),
-              borderSide: const BorderSide(
-                color: AppColors.inputBorder,
+              borderSide: BorderSide(
+                color: hasError ? AppColors.error : AppColors.inputBorder,
               ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30.r),
-              borderSide: const BorderSide(
-                color: AppColors.primary,
+              borderSide: BorderSide(
+                color: hasError ? AppColors.error : AppColors.primary,
               ),
             ),
           ),
         ),
+        if (hasError) ...[
+          SizedBox(height: 4.h),
+          Padding(
+            padding: EdgeInsets.only(left: 16.w),
+            child: Text(
+              errorText!,
+              style: getTextStyle(
+                fontSize: 12,
+                color: AppColors.error,
+              ),
+            ),
+          ),
+        ],
       ],
     );
   }

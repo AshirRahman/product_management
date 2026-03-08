@@ -106,23 +106,35 @@ class HomeScreen extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
                 child: Obx(
-                  () => controller.isLoading.value
-                      ? const Center(child: CircularProgressIndicator())
-                      : GridView.builder(
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            mainAxisSpacing: 12.h,
-                            crossAxisSpacing: 12.w,
-                            childAspectRatio: .7,
-                          ),
-                          itemCount: controller.products.length,
-                          itemBuilder: (context, index) {
-                            return ProductCard(
-                              product: controller.products[index],
-                            );
-                          },
+                  () {
+                    if (controller.isLoading.value &&
+                        controller.products.isEmpty) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                    return RefreshIndicator(
+                      backgroundColor: AppColors.scaffoldBackground,
+                      color: AppColors.primary,
+                      onRefresh: () async {
+                        await controller.loadProducts();
+                        await controller.fetchProfile();
+                      },
+                      child: GridView.builder(
+                        physics: const AlwaysScrollableScrollPhysics(),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 12.h,
+                          crossAxisSpacing: 12.w,
+                          childAspectRatio: .7,
                         ),
+                        itemCount: controller.products.length,
+                        itemBuilder: (context, index) {
+                          return ProductCard(
+                            product: controller.products[index],
+                          );
+                        },
+                      ),
+                    );
+                  },
                 ),
               ),
             ),

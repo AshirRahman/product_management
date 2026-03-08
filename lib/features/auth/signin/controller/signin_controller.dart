@@ -13,6 +13,20 @@ class SigninController extends GetxController {
   RxBool rememberMe = false.obs;
   RxBool isLoading = false.obs;
 
+  RxString emailError = ''.obs;
+  RxString passwordError = ''.obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    emailController.addListener(() {
+      if (emailError.isNotEmpty) emailError.value = '';
+    });
+    passwordController.addListener(() {
+      if (passwordError.isNotEmpty) passwordError.value = '';
+    });
+  }
+
   void togglePassword() {
     obscurePassword.value = !obscurePassword.value;
   }
@@ -21,11 +35,32 @@ class SigninController extends GetxController {
     rememberMe.value = !rememberMe.value;
   }
 
-  Future<void> login() async {
-    if (emailController.text.isEmpty || passwordController.text.isEmpty) {
-      Get.snackbar("Error", "Email and password required");
-      return;
+  bool _validate() {
+    bool valid = true;
+    final email = emailController.text.trim();
+    final password = passwordController.text;
+
+    if (email.isEmpty) {
+      emailError.value = 'Email is required';
+      valid = false;
+    } else if (!GetUtils.isEmail(email)) {
+      emailError.value = 'Enter a valid email address';
+      valid = false;
     }
+
+    if (password.isEmpty) {
+      passwordError.value = 'Password is required';
+      valid = false;
+    } else if (password.length < 6) {
+      passwordError.value = 'Password must be at least 6 characters';
+      valid = false;
+    }
+
+    return valid;
+  }
+
+  Future<void> login() async {
+    if (!_validate()) return;
 
     isLoading.value = true;
 
@@ -46,5 +81,12 @@ class SigninController extends GetxController {
     } else {
       Get.snackbar("Error", response.errorMessage);
     }
+  }
+
+  @override
+  void onClose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.onClose();
   }
 }

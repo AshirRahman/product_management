@@ -53,11 +53,16 @@ class SigninScreen extends StatelessWidget {
                 SizedBox(height: 40.h),
 
                 /// Email
-                CustomTextField(
-                  label: "Email Address",
-                  hintText: "pristia@gmail.com",
-                  controller: controller.emailController,
-                  keyboardType: TextInputType.emailAddress,
+                Obx(
+                  () => CustomTextField(
+                    label: "Email Address",
+                    hintText: "pristia@gmail.com",
+                    controller: controller.emailController,
+                    keyboardType: TextInputType.emailAddress,
+                    errorText: controller.emailError.value.isEmpty
+                        ? null
+                        : controller.emailError.value,
+                  ),
                 ),
 
                 SizedBox(height: 20.h),
@@ -71,6 +76,9 @@ class SigninScreen extends StatelessWidget {
                     isPassword: true,
                     obscureText: controller.obscurePassword.value,
                     onToggle: controller.togglePassword,
+                    errorText: controller.passwordError.value.isEmpty
+                        ? null
+                        : controller.passwordError.value,
                   ),
                 ),
 

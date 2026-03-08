@@ -56,11 +56,16 @@ class ForgotPasswordScreen extends StatelessWidget {
               SizedBox(height: 40.h),
 
               /// Email Field
-              CustomTextField(
-                label: "Email Address",
-                hintText: "pristia@gmail.com",
-                controller: controller.emailController,
-                keyboardType: TextInputType.emailAddress,
+              Obx(
+                () => CustomTextField(
+                  label: "Email Address",
+                  hintText: "pristia@gmail.com",
+                  controller: controller.emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  errorText: controller.emailError.value.isEmpty
+                      ? null
+                      : controller.emailError.value,
+                ),
               ),
 
               SizedBox(height: 30.h),
