@@ -1,4 +1,5 @@
 import 'package:course_online/core/common/widgets/app_image.dart';
+import 'package:course_online/core/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class ProductHeader extends StatelessWidget {
@@ -12,9 +13,10 @@ class ProductHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
       height: 200,
       decoration: BoxDecoration(
-        color: Colors.grey.shade200,
+        color: AppColors.grey200,
         borderRadius: BorderRadius.circular(15),
       ),
       child: ClipRRect(

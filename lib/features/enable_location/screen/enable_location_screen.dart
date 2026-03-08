@@ -1,4 +1,8 @@
+import 'package:course_online/core/common/styles/global_text_style.dart';
+import 'package:course_online/core/common/widgets/app_image.dart';
 import 'package:course_online/core/common/widgets/custom_button.dart';
+import 'package:course_online/core/utils/constants/colors.dart';
+import 'package:course_online/core/utils/constants/image_path.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controller/enable_location_controller.dart';
@@ -12,32 +16,23 @@ class EnableLocationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffF5F6FA),
+      backgroundColor: AppColors.scaffoldBackground,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                height: 160,
-                width: 160,
-                decoration: BoxDecoration(
-                  color: const Color(0xff2D6CDF).withOpacity(0.1),
-                  shape: BoxShape.circle,
-                ),
-                child: const Icon(
-                  Icons.location_on,
-                  size: 80,
-                  color: Color(0xff2D6CDF),
-                ),
+              AppImage(
+                path: ImagePath.map,
+                height: 220,
               ),
 
               const SizedBox(height: 30),
 
-              const Text(
+              Text(
                 "Enable Location",
-                style: TextStyle(
+                style: getTextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
@@ -45,11 +40,11 @@ class EnableLocationScreen extends StatelessWidget {
 
               const SizedBox(height: 10),
 
-              const Text(
+              Text(
                 "Kindly allow us to access your location to provide you with suggestions for nearby salons",
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.grey,
+                style: getTextStyle(
+                  color: AppColors.grey,
                 ),
               ),
 
@@ -66,10 +61,10 @@ class EnableLocationScreen extends StatelessWidget {
               /// Skip
               GestureDetector(
                 onTap: controller.skip,
-                child: const Text(
+                child: Text(
                   "Skip, Not Now",
-                  style: TextStyle(
-                    color: Colors.grey,
+                  style: getTextStyle(
+                    color: AppColors.grey,
                     fontSize: 16,
                   ),
                 ),

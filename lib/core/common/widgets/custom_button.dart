@@ -1,3 +1,5 @@
+import 'package:course_online/core/common/styles/global_text_style.dart';
+import 'package:course_online/core/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
@@ -16,8 +18,8 @@ class CustomButton extends StatelessWidget {
     required this.onTap,
     this.height = 55,
     this.width = double.infinity,
-    this.color = const Color(0xff2D6CDF),
-    this.textColor = Colors.white,
+    this.color = AppColors.primary,
+    this.textColor = AppColors.white,
     this.radius = 30,
     this.isLoading = false,
   });
@@ -40,15 +42,15 @@ class CustomButton extends StatelessWidget {
                 width: 22,
                 child: CircularProgressIndicator(
                   strokeWidth: 2,
-                  color: Colors.white,
+                  color: AppColors.white,
                 ),
               )
             : Text(
                 title,
-                style: const TextStyle(
+                style: getTextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
-                  color: Colors.white,
+                  color: AppColors.white,
                 ),
               ),
       ),

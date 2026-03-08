@@ -1,6 +1,5 @@
 import 'package:course_online/core/models/response_data.dart';
 import 'package:course_online/core/services/storage_service.dart';
-import 'package:course_online/features/auth/verify_code/screen/verify_code_screen.dart';
 import 'package:course_online/routes/app_routes.dart';
 import 'package:get/get.dart';
 import '../services/verify_code_services.dart';
@@ -8,8 +7,8 @@ import '../services/verify_code_services.dart';
 class VerifyCodeController extends GetxController {
   RxString otpCode = "".obs;
   RxBool isLoading = false.obs;
+  RxBool isResendLoading = false.obs;
 
-  /// email signup screen থেকে আসবে
   String email = Get.arguments ?? "";
 
   void onCompleted(String value) {
@@ -38,6 +37,20 @@ class VerifyCodeController extends GetxController {
       Get.snackbar("Success", response.responseData['message']);
 
       Get.offAllNamed(AppRoute.enableLocationScreen);
+    } else {
+      Get.snackbar("Error", response.errorMessage);
+    }
+  }
+
+  Future<void> resendOtp() async {
+    isResendLoading.value = true;
+
+    ResponseData response = await VerifyCodeServices.resendOtp(email: email);
+
+    isResendLoading.value = false;
+
+    if (response.isSuccess) {
+      Get.snackbar("Success", "OTP resent to $email");
     } else {
       Get.snackbar("Error", response.errorMessage);
     }

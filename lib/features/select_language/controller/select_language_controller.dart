@@ -18,6 +18,6 @@ class SelectLanguageController extends GetxController {
   }
 
   void continueNext() {
-    Get.toNamed(AppRoute.setupProfileScreen);
+    Get.toNamed(AppRoute.setupProfileScreen, arguments: true);
   }
 }

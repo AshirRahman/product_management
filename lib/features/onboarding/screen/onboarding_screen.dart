@@ -1,5 +1,8 @@
 import 'package:carousel_slider_plus/carousel_slider_plus.dart';
+import 'package:course_online/core/common/styles/global_text_style.dart';
 import 'package:course_online/core/common/widgets/app_image.dart';
+import 'package:course_online/core/utils/constants/colors.dart';
+import 'package:course_online/core/utils/constants/image_path.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -14,13 +17,13 @@ class OnboardingScreen extends StatelessWidget {
 
   final List<Map<String, String>> onboardingData = [
     {
-      "image": "assets/images/onboard1.png",
+      "image": ImagePath.onboardingo,
       "title": "Best online courses in the world",
       "subtitle":
           "Now you can learn anywhere, anytime, even if there is no internet access!"
     },
     {
-      "image": "assets/images/onboard2.png",
+      "image": ImagePath.onboard2,
       "title": "Explore your new skill today",
       "subtitle": "Our platform is designed to help you explore new skills."
     },
@@ -29,7 +32,7 @@ class OnboardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffF5F6FA),
+      backgroundColor: AppColors.scaffoldBackground,
       body: SafeArea(
         child: Column(
           children: [
@@ -58,7 +61,7 @@ class OnboardingScreen extends StatelessWidget {
                         Text(
                           item["title"]!,
                           textAlign: TextAlign.center,
-                          style: const TextStyle(
+                          style: getTextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.bold,
                           ),
@@ -67,9 +70,9 @@ class OnboardingScreen extends StatelessWidget {
                         Text(
                           item["subtitle"]!,
                           textAlign: TextAlign.center,
-                          style: const TextStyle(
+                          style: getTextStyle(
                             fontSize: 14,
-                            color: Colors.grey,
+                            color: AppColors.grey,
                           ),
                         ),
                       ],
@@ -83,7 +86,7 @@ class OnboardingScreen extends StatelessWidget {
                 activeIndex: controller.currentIndex.value,
                 count: onboardingData.length,
                 effect: const ExpandingDotsEffect(
-                  activeDotColor: Color(0xff2D6CDF),
+                  activeDotColor: AppColors.primary,
                   dotHeight: 8,
                   dotWidth: 8,
                 ),
@@ -95,7 +98,7 @@ class OnboardingScreen extends StatelessWidget {
               child: Obx(
                 () => ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xff2D6CDF),
+                    backgroundColor: AppColors.primary,
                     minimumSize: const Size(double.infinity, 55),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),

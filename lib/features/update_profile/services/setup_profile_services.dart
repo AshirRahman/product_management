@@ -1,42 +1,25 @@
 import 'dart:convert';
+import 'package:course_online/core/models/response_data.dart';
+import 'package:course_online/core/services/network_caller.dart';
+import 'package:course_online/core/services/storage_service.dart';
 import 'package:course_online/core/utils/constants/api_constants.dart';
-import 'package:http/http.dart' as http;
 
 class SetupProfileService {
-  static Future<bool> completeProfile({
-    required String token,
-    required String about,
-    required String dob,
-    required String gender,
-    required String imagePath,
+  static Future<ResponseData> updateProfile({
+    required String fullName,
+    required String country,
+    String? imagePath,
   }) async {
-    var request = http.MultipartRequest(
-      "PUT",
-      Uri.parse(ApiConstants.setupProfile),
-    );
-
-    request.headers["Authorization"] = token;
-
-    /// JSON data
-    Map<String, dynamic> data = {
-      "about": about,
-      "dateOfBirth": dob,
-      "gender": gender,
+    final Map<String, dynamic> data = {
+      "fullName": fullName,
+      "country": country,
     };
 
-    request.fields["data"] = jsonEncode(data);
-
-    /// Image
-    request.files.add(
-      await http.MultipartFile.fromPath("image", imagePath),
+    return await NetworkCaller().multipartPutRequest(
+      ApiConstants.setupProfile,
+      dataJson: jsonEncode(data),
+      filePath: imagePath,
+      token: StorageService.token,
     );
-
-    var response = await request.send();
-
-    if (response.statusCode == 200) {
-      return true;
-    }
-
-    return false;
   }
 }

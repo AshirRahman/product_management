@@ -1,5 +1,9 @@
+import 'package:course_online/core/common/styles/global_text_style.dart';
 import 'package:course_online/core/common/widgets/app_image.dart';
+import 'package:course_online/core/utils/constants/colors.dart';
+import 'package:course_online/core/utils/constants/image_path.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import '../controller/splash_controller.dart';
 
@@ -11,53 +15,46 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffF5F6FA),
+      backgroundColor: AppColors.scaffoldBackground,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25),
+          padding: EdgeInsets.symmetric(horizontal: 25),
           child: Column(
             children: [
-              const SizedBox(height: 60),
-              const Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  "Splash Screen",
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey,
-                  ),
-                ),
-              ),
-              const Spacer(),
+              SizedBox(height: 60),
+              Spacer(),
               Column(
                 children: [
                   AppImage(
-                    path: "assets/images/car.png",
+                    path: ImagePath.splash,
                     height: 120,
                   ),
-                  const SizedBox(height: 25),
-                  const Text(
+                  SizedBox(height: 25),
+                  Text(
                     "Theory test in my language",
-                    style: TextStyle(
+                    style: getTextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  const SizedBox(height: 10),
-                  const Text(
+                  SizedBox(height: 10),
+                  Text(
                     "I must write the real test will be in English language and this app just helps you to understand the materials in your language",
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.grey,
+                    style: getTextStyle(
+                      color: AppColors.grey,
                       fontSize: 14,
                     ),
                   ),
                 ],
               ),
-              const Spacer(),
-              const CircularProgressIndicator(),
-              const SizedBox(height: 40),
+              Spacer(),
+              SpinKitFadingCircle(
+                color: AppColors.accentBlue,
+                size: 50,
+              ),
+              SizedBox(height: 80),
             ],
           ),
         ),

@@ -1,70 +1,74 @@
 import 'dart:io';
-import 'package:course_online/core/services/storage_service.dart';
+import 'package:course_online/core/models/response_data.dart';
 import 'package:course_online/features/update_profile/services/setup_profile_services.dart';
 import 'package:course_online/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class SetupProfileController extends GetxController {
-  final aboutController = TextEditingController();
-  final dobController = TextEditingController();
+  final fullNameController = TextEditingController();
+  final countryController = TextEditingController();
 
-  RxString selectedGender = "".obs;
   Rx<File?> profileImage = Rx<File?>(null);
-
   RxBool isLoading = false.obs;
+
+  /// true হলে verify code screen থেকে এসেছে
+  bool fromVerify = false;
 
   final picker = ImagePicker();
 
-  final genders = ["Male", "Female", "Other"];
-
-  void selectGender(String gender) {
-    selectedGender.value = gender;
+  @override
+  void onInit() {
+    super.onInit();
+    fromVerify = Get.arguments == true;
   }
 
   /// Pick Image
   Future<void> pickImage() async {
     final picked = await picker.pickImage(
       source: ImageSource.gallery,
+      imageQuality: 80,
     );
-
     if (picked != null) {
       profileImage.value = File(picked.path);
     }
   }
 
-  /// Date
-  void onDateSelected(DateRangePickerSelectionChangedArgs args) {
-    DateTime date = args.value;
-
-    dobController.text = "${date.day}/${date.month}/${date.year}";
-  }
-
   /// Submit Profile
   Future<void> next() async {
-    if (profileImage.value == null) {
-      Get.snackbar("Error", "Please upload profile image");
+    if (fullNameController.text.trim().isEmpty ||
+        countryController.text.trim().isEmpty) {
+      Get.snackbar("Error", "Please fill in all required fields");
       return;
     }
 
     isLoading.value = true;
 
-    bool success = await SetupProfileService.completeProfile(
-      token: StorageService.token ?? "",
-      about: aboutController.text,
-      dob: dobController.text,
-      gender: selectedGender.value,
-      imagePath: profileImage.value!.path,
+    ResponseData response = await SetupProfileService.updateProfile(
+      fullName: fullNameController.text.trim(),
+      country: countryController.text.trim(),
+      imagePath: profileImage.value?.path,
     );
 
     isLoading.value = false;
 
-    if (success) {
-      Get.offAllNamed(AppRoute.homeScreen);
+    if (response.isSuccess) {
+      Get.snackbar("Success", "Profile updated successfully");
+      if (fromVerify) {
+        Get.offAllNamed(AppRoute.homeScreen);
+      } else {
+        Get.offNamed(AppRoute.profileScreen);
+      }
     } else {
-      Get.snackbar("Error", "Profile update failed");
+      Get.snackbar("Error", response.errorMessage);
     }
+  }
+
+  @override
+  void onClose() {
+    fullNameController.dispose();
+    countryController.dispose();
+    super.onClose();
   }
 }

@@ -1,3 +1,6 @@
+import 'package:course_online/core/common/styles/global_text_style.dart';
+import 'package:course_online/core/utils/constants/colors.dart';
+import 'package:course_online/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controller/profile_controller.dart';
@@ -11,96 +14,155 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffF5F6FA),
+      backgroundColor: AppColors.scaffoldBackground,
       body: SafeArea(
-        child: Column(
-          children: [
+        child: Obx(() {
+          if (controller.isLoading.value) {
+            return const Center(child: CircularProgressIndicator());
+          }
 
-            const SizedBox(height: 20),
+          final profile = controller.profile.value;
 
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 25),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Profile",
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
+          return Column(
+            children: [
+              const SizedBox(height: 20),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Row(
+                  children: [
+                    IconButton(
+                      onPressed: () => Get.offNamed(AppRoute.homeScreen),
+                      icon: const Icon(Icons.arrow_back),
+                    ),
+                    Expanded(
+                      child: Center(
+                        child: Text(
+                          "Profile",
+                          style: getTextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 48),
+                  ],
                 ),
               ),
-            ),
 
-            const SizedBox(height: 30),
+              const SizedBox(height: 30),
 
-            /// Profile Image
-            GestureDetector(
-              onTap: controller.editProfile,
-              child: const Column(
-                children: [
-
-                  CircleAvatar(
-                    radius: 45,
-                    backgroundImage:
-                        AssetImage("assets/images/profile.png"),
-                  ),
-
-                  SizedBox(height: 8),
-
-                  Icon(
-                    Icons.edit,
-                    size: 18,
-                    color: Color(0xff2D6CDF),
-                  ),
-                ],
+              /// Profile Image
+              GestureDetector(
+                onTap: controller.editProfile,
+                child: Column(
+                  children: [
+                    ClipOval(
+                      child: SizedBox(
+                        width: 90,
+                        height: 90,
+                        child: (profile?.profileImage != null &&
+                                profile!.profileImage!.isNotEmpty)
+                            ? Image.network(
+                                profile.profileImage!,
+                                fit: BoxFit.cover,
+                                errorBuilder: (_, __, ___) => Container(
+                                  color: AppColors.grey300,
+                                  child: const Icon(Icons.person,
+                                      size: 40, color: AppColors.white),
+                                ),
+                                loadingBuilder: (_, child, loadingProgress) {
+                                  if (loadingProgress == null) return child;
+                                  return Container(
+                                    color: AppColors.grey200,
+                                    child: const Center(
+                                      child: CircularProgressIndicator(
+                                          strokeWidth: 2),
+                                    ),
+                                  );
+                                },
+                              )
+                            : Container(
+                                color: AppColors.grey300,
+                                child: const Icon(Icons.person,
+                                    size: 40, color: AppColors.white),
+                              ),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    const Icon(
+                      Icons.edit,
+                      size: 18,
+                      color: AppColors.primary,
+                    ),
+                  ],
+                ),
               ),
-            ),
 
-            const SizedBox(height: 10),
+              const SizedBox(height: 10),
 
-            Text(
-              controller.userName,
-              style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
+              Text(
+                profile?.fullName ?? "-",
+                style: getTextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
-            ),
 
-            const SizedBox(height: 25),
+              const SizedBox(height: 4),
 
-            const Divider(),
+              Text(
+                profile?.email ?? "-",
+                style: getTextStyle(
+                  fontSize: 13,
+                  color: AppColors.grey,
+                ),
+              ),
 
-            /// Menu Items
-            ProfileMenuItem(
-              icon: Icons.edit_outlined,
-              title: "Edit Profile",
-              onTap: controller.editProfile,
-            ),
+              const SizedBox(height: 4),
 
-            ProfileMenuItem(
-              icon: Icons.settings_outlined,
-              title: "Support",
-              onTap: controller.support,
-            ),
+              Text(
+                profile?.country ?? "-",
+                style: getTextStyle(
+                  fontSize: 13,
+                  color: AppColors.grey,
+                ),
+              ),
 
-            ProfileMenuItem(
-              icon: Icons.lock_outline,
-              title: "Privacy",
-              onTap: controller.privacy,
-            ),
+              const SizedBox(height: 25),
 
-            const Divider(),
+              const Divider(),
 
-            ProfileMenuItem(
-              icon: Icons.logout,
-              title: "Logout",
-              color: Colors.orange,
-              onTap: controller.logout,
-            ),
+              ProfileMenuItem(
+                icon: Icons.edit_outlined,
+                title: "Edit Profile",
+                onTap: controller.editProfile,
+              ),
 
-          ],
-        ),
+              ProfileMenuItem(
+                icon: Icons.settings_outlined,
+                title: "Support",
+                onTap: controller.support,
+              ),
+
+              ProfileMenuItem(
+                icon: Icons.lock_outline,
+                title: "Privacy",
+                onTap: controller.privacy,
+              ),
+
+              const Divider(),
+
+              ProfileMenuItem(
+                icon: Icons.logout,
+                title: "Logout",
+                color: AppColors.warning,
+                onTap: controller.logout,
+              ),
+            ],
+          );
+        }),
       ),
     );
   }

@@ -1,4 +1,6 @@
+import 'package:course_online/core/common/styles/global_text_style.dart';
 import 'package:course_online/core/common/widgets/custom_button.dart';
+import 'package:course_online/core/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -12,7 +14,7 @@ class VerifyCodeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffF5F6FA),
+      backgroundColor: AppColors.scaffoldBackground,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -31,9 +33,9 @@ class VerifyCodeScreen extends StatelessWidget {
 
               const SizedBox(height: 40),
 
-              const Text(
+              Text(
                 "Verify Code",
-                style: TextStyle(
+                style: getTextStyle(
                   fontSize: 26,
                   fontWeight: FontWeight.bold,
                 ),
@@ -41,10 +43,10 @@ class VerifyCodeScreen extends StatelessWidget {
 
               const SizedBox(height: 10),
 
-              const Text(
+              Text(
                 "Please enter the code we just sent to\nemail pristia@gmail.com",
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.grey),
+                style: getTextStyle(color: AppColors.grey),
               ),
 
               const SizedBox(height: 40),
@@ -62,9 +64,9 @@ class VerifyCodeScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                   fieldHeight: 55,
                   fieldWidth: 55,
-                  activeColor: const Color(0xff2D6CDF),
-                  selectedColor: const Color(0xff2D6CDF),
-                  inactiveColor: Colors.grey.shade300,
+                  activeColor: AppColors.primary,
+                  selectedColor: AppColors.primary,
+                  inactiveColor: AppColors.grey300,
                 ),
               ),
 
@@ -76,6 +78,39 @@ class VerifyCodeScreen extends StatelessWidget {
                   title: "Verify",
                   isLoading: controller.isLoading.value,
                   onTap: controller.verify,
+                ),
+              ),
+
+              const SizedBox(height: 20),
+
+              /// Resend OTP
+              Obx(
+                () => Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Didn't receive the code? ",
+                      style: getTextStyle(color: AppColors.grey),
+                    ),
+                    GestureDetector(
+                      onTap: controller.isResendLoading.value
+                          ? null
+                          : controller.resendOtp,
+                      child: controller.isResendLoading.value
+                          ? const SizedBox(
+                              width: 16,
+                              height: 16,
+                              child: CircularProgressIndicator(strokeWidth: 2),
+                            )
+                          : Text(
+                              "Resend",
+                              style: getTextStyle(
+                                color: AppColors.primary,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                    ),
+                  ],
                 ),
               ),
             ],

@@ -20,4 +20,13 @@ class VerifyCodeServices {
 
     return response;
   }
+
+  static Future<ResponseData> resendOtp({
+    required String email,
+  }) async {
+    return await NetworkCaller().postRequest(
+      ApiConstants.resendOtp,
+      body: {"email": email},
+    );
+  }
 }

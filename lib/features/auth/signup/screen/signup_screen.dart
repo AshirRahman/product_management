@@ -1,5 +1,7 @@
+import 'package:course_online/core/common/styles/global_text_style.dart';
 import 'package:course_online/core/common/widgets/custom_button.dart';
 import 'package:course_online/core/common/widgets/custom_textfield.dart';
+import 'package:course_online/core/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controller/signup_controller.dart';
@@ -11,9 +13,8 @@ class SignupScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      backgroundColor: const Color(0xffF5F6FA),
+      backgroundColor: AppColors.scaffoldBackground,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -21,7 +22,6 @@ class SignupScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
                 const SizedBox(height: 20),
 
                 /// Back Button
@@ -29,16 +29,16 @@ class SignupScreen extends StatelessWidget {
                   onTap: () => Get.back(),
                   child: const CircleAvatar(
                     radius: 20,
-                    backgroundColor: Colors.white,
+                    backgroundColor: AppColors.white,
                     child: Icon(Icons.arrow_back),
                   ),
                 ),
 
                 const SizedBox(height: 30),
 
-                const Text(
+                Text(
                   "Welcome to Eduline",
-                  style: TextStyle(
+                  style: getTextStyle(
                     fontSize: 26,
                     fontWeight: FontWeight.bold,
                   ),
@@ -46,10 +46,10 @@ class SignupScreen extends StatelessWidget {
 
                 const SizedBox(height: 10),
 
-                const Text(
-                  "Let’s join to Eduline learning ecosystem & meet our professional mentor. It’s Free!",
-                  style: TextStyle(
-                    color: Colors.grey,
+                Text(
+                  "Let's join to Eduline learning ecosystem & meet our professional mentor. It's Free!",
+                  style: getTextStyle(
+                    color: AppColors.grey,
                   ),
                 ),
 
@@ -89,22 +89,19 @@ class SignupScreen extends StatelessWidget {
                 const SizedBox(height: 10),
 
                 /// Password Hint
-                const Row(
+                Row(
                   children: [
-
-                    Icon(
+                    const Icon(
                       Icons.check_circle_outline,
-                      color: Colors.green,
+                      color: AppColors.success,
                       size: 18,
                     ),
-
-                    SizedBox(width: 8),
-
+                    const SizedBox(width: 8),
                     Expanded(
                       child: Text(
                         "At least 8 characters with a combination of letters and numbers",
-                        style: TextStyle(
-                          color: Colors.green,
+                        style: getTextStyle(
+                          color: AppColors.success,
                           fontSize: 13,
                         ),
                       ),
@@ -129,25 +126,21 @@ class SignupScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-
                     const Text("Already have an account? "),
-
                     GestureDetector(
                       onTap: () {
                         Get.back();
                       },
-                      child: const Text(
+                      child: Text(
                         "Sign In",
-                        style: TextStyle(
-                          color: Color(0xff2D6CDF),
+                        style: getTextStyle(
+                          color: AppColors.primary,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     )
-
                   ],
                 )
-
               ],
             ),
           ),

@@ -1,5 +1,7 @@
+import 'package:course_online/core/common/styles/global_text_style.dart';
 import 'package:course_online/core/common/widgets/app_image.dart';
 import 'package:course_online/core/common/widgets/custom_button.dart';
+import 'package:course_online/core/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controller/select_language_controller.dart';
@@ -13,37 +15,33 @@ class SelectLanguageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffF5F6FA),
+      backgroundColor: AppColors.scaffoldBackground,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 10),
+              const SizedBox(height: 60),
 
-              /// Back
-              IconButton(
-                onPressed: () => Get.back(),
-                icon: const Icon(Icons.arrow_back),
-              ),
-
-              const SizedBox(height: 10),
-
-              const Text(
-                "What is Your Mother Language",
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
+              Center(
+                child: Text(
+                  "What is Your Mother Language",
+                  style: getTextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
 
               const SizedBox(height: 8),
 
-              const Text(
-                "Discover what is a podcast description and podcast summary.",
-                style: TextStyle(
-                  color: Colors.grey,
+              Center(
+                child: Text(
+                  "Discover what is a podcast description and podcast summary.",
+                  style: getTextStyle(
+                    color: AppColors.grey,
+                  ),
                 ),
               ),
 
@@ -68,8 +66,8 @@ class SelectLanguageScreen extends StatelessWidget {
                                 horizontal: 15, vertical: 12),
                             decoration: BoxDecoration(
                               color: selected
-                                  ? Colors.white
-                                  : Colors.grey.shade100,
+                                  ? AppColors.white
+                                  : AppColors.grey100,
                               borderRadius: BorderRadius.circular(15),
                             ),
                             child: Row(
@@ -83,7 +81,7 @@ class SelectLanguageScreen extends StatelessWidget {
                                 const SizedBox(width: 12),
                                 Text(
                                   language["name"]!,
-                                  style: const TextStyle(fontSize: 16),
+                                  style: getTextStyle(fontSize: 16),
                                 ),
                                 const Spacer(),
                                 selected
@@ -91,19 +89,20 @@ class SelectLanguageScreen extends StatelessWidget {
                                         padding: const EdgeInsets.symmetric(
                                             horizontal: 12, vertical: 6),
                                         decoration: BoxDecoration(
-                                          color: const Color(0xff2D6CDF),
+                                          color: AppColors.primary,
                                           borderRadius:
                                               BorderRadius.circular(20),
                                         ),
-                                        child: const Row(
+                                        child: Row(
                                           children: [
-                                            Icon(Icons.check,
-                                                color: Colors.white, size: 16),
-                                            SizedBox(width: 5),
+                                            const Icon(Icons.check,
+                                                color: AppColors.white,
+                                                size: 16),
+                                            const SizedBox(width: 5),
                                             Text(
                                               "Selected",
-                                              style: TextStyle(
-                                                  color: Colors.white),
+                                              style: getTextStyle(
+                                                  color: AppColors.white),
                                             )
                                           ],
                                         ),
@@ -112,7 +111,7 @@ class SelectLanguageScreen extends StatelessWidget {
                                         padding: const EdgeInsets.symmetric(
                                             horizontal: 12, vertical: 6),
                                         decoration: BoxDecoration(
-                                          color: Colors.grey.shade300,
+                                          color: AppColors.grey300,
                                           borderRadius:
                                               BorderRadius.circular(20),
                                         ),

@@ -58,14 +58,14 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: zarbazan1-app-release
+          name:  product-management-app-release
           path: build/app/outputs/flutter-apk/**/*.apk
 
       # 10. Upload iOS IPA as artifact
       # - name: Upload iOS IPA
       #   uses: actions/upload-artifact@v4
       #   with:
-      #     name: zarbazan1-ios-ipa
+      #     name: product-management-ios-ipa
       #     path: build/ios/iphoneos/unsigned-app.ipa
 
       # 11. Publish GitHub Release
@@ -73,7 +73,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: v1.${{ github.run_number }}
-          name: "Zarbazan1 Release v1.${{ github.run_number }}"
+          name: "Product Management Release v1.${{ github.run_number }}"
           files: |
             build/app/outputs/flutter-apk/app-release.apk
             build/ios/iphoneos/unsigned-app.ipa

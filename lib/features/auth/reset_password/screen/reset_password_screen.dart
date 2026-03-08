@@ -1,5 +1,7 @@
+import 'package:course_online/core/common/styles/global_text_style.dart';
 import 'package:course_online/core/common/widgets/custom_button.dart';
 import 'package:course_online/core/common/widgets/custom_textfield.dart';
+import 'package:course_online/core/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controller/reset_password_controller.dart';
@@ -7,20 +9,17 @@ import '../controller/reset_password_controller.dart';
 class ResetPasswordScreen extends StatelessWidget {
   ResetPasswordScreen({super.key});
 
-  final ResetPasswordController controller =
-      Get.put(ResetPasswordController());
+  final ResetPasswordController controller = Get.put(ResetPasswordController());
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      backgroundColor: const Color(0xffF5F6FA),
+      backgroundColor: AppColors.scaffoldBackground,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25),
           child: Column(
             children: [
-
               const SizedBox(height: 20),
 
               /// Back
@@ -34,9 +33,9 @@ class ResetPasswordScreen extends StatelessWidget {
 
               const SizedBox(height: 30),
 
-              const Text(
+              Text(
                 "Reset Password",
-                style: TextStyle(
+                style: getTextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
@@ -44,10 +43,10 @@ class ResetPasswordScreen extends StatelessWidget {
 
               const SizedBox(height: 10),
 
-              const Text(
+              Text(
                 "Your password must be at least 8 characters long and include a combination of letters, numbers",
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.grey),
+                style: getTextStyle(color: AppColors.grey),
               ),
 
               const SizedBox(height: 40),
@@ -88,7 +87,6 @@ class ResetPasswordScreen extends StatelessWidget {
                   onTap: controller.submit,
                 ),
               ),
-
             ],
           ),
         ),

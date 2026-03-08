@@ -1,10 +1,10 @@
+import 'package:course_online/core/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 import 'custom_themes/app_bar_theme.dart';
 import 'custom_themes/elevated_button_theme.dart';
 import 'custom_themes/text_field_theme.dart';
 import 'custom_themes/text_theme.dart';
-
 
 class AppTheme {
   AppTheme._();
@@ -13,8 +13,8 @@ class AppTheme {
       useMaterial3: true,
       // fontFamily: 'Poppins'
       brightness: Brightness.light,
-      primaryColor: Colors.red,
-      scaffoldBackgroundColor: Colors.white,
+      primaryColor: AppColors.error,
+      scaffoldBackgroundColor: AppColors.white,
       textTheme: AppTextTheme.lightTextTheme,
       elevatedButtonTheme: AppElevatedButtonTheme.lightElevatedButtonTheme,
       appBarTheme: App_BarTheme.lightAppBarTheme,
@@ -24,8 +24,8 @@ class AppTheme {
       useMaterial3: true,
       // fontFamily: 'Poppins'
       brightness: Brightness.dark,
-      primaryColor: Colors.red,
-      scaffoldBackgroundColor: Colors.black,
+      primaryColor: AppColors.error,
+      scaffoldBackgroundColor: AppColors.black,
       textTheme: AppTextTheme.darkTextTheme,
       elevatedButtonTheme: AppElevatedButtonTheme.darkElevatedButtonTheme,
       appBarTheme: App_BarTheme.darkAppBarTheme,

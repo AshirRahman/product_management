@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'package:course_online/core/common/styles/global_text_style.dart';
+import 'package:course_online/core/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class UploadPhotoWidget extends StatelessWidget {
@@ -20,7 +22,7 @@ class UploadPhotoWidget extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: Colors.grey.shade300,
+            color: AppColors.grey300,
             style: BorderStyle.solid,
           ),
         ),
@@ -34,32 +36,32 @@ class UploadPhotoWidget extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               )
-            : const Column(
+            : Column(
                 children: [
                   Icon(
                     Icons.add_a_photo_outlined,
                     size: 40,
-                    color: Colors.grey,
+                    color: AppColors.grey,
                   ),
                   SizedBox(height: 10),
                   Text(
                     "Upload photo",
-                    style: TextStyle(fontWeight: FontWeight.w500),
+                    style: getTextStyle(fontWeight: FontWeight.w500),
                   ),
                   SizedBox(height: 5),
                   Text(
                     "Upload file size is less than 5MB\nSupport: JPG, PNG",
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.grey,
+                    style: getTextStyle(
+                      color: AppColors.grey,
                       fontSize: 12,
                     ),
                   ),
                   SizedBox(height: 10),
                   Text(
                     "Choose a file",
-                    style: TextStyle(
-                      color: Color(0xff2D6CDF),
+                    style: getTextStyle(
+                      color: AppColors.primary,
                       fontWeight: FontWeight.w500,
                     ),
                   ),

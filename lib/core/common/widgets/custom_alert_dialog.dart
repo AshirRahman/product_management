@@ -1,3 +1,5 @@
+import 'package:course_online/core/common/styles/global_text_style.dart';
+import 'package:course_online/core/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'custom_button.dart';
 
@@ -19,7 +21,6 @@ class CustomAlertDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Dialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
@@ -29,7 +30,6 @@ class CustomAlertDialog extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-
             /// Close Button
             Align(
               alignment: Alignment.topRight,
@@ -47,12 +47,12 @@ class CustomAlertDialog extends StatelessWidget {
               width: 90,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.blue.withOpacity(0.1),
+                color: AppColors.dialogIconBg,
               ),
               child: const Icon(
                 Icons.check,
                 size: 45,
-                color: Color(0xff2D6CDF),
+                color: AppColors.primary,
               ),
             ),
 
@@ -61,7 +61,7 @@ class CustomAlertDialog extends StatelessWidget {
             /// Title
             Text(
               title,
-              style: const TextStyle(
+              style: getTextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
               ),
@@ -74,8 +74,8 @@ class CustomAlertDialog extends StatelessWidget {
             Text(
               message,
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: Colors.grey,
+              style: getTextStyle(
+                color: AppColors.grey,
               ),
             ),
 
@@ -86,7 +86,6 @@ class CustomAlertDialog extends StatelessWidget {
               title: buttonText,
               onTap: onTap,
             )
-
           ],
         ),
       ),

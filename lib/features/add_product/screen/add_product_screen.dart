@@ -1,5 +1,8 @@
+import 'package:course_online/core/common/styles/global_text_style.dart';
 import 'package:course_online/core/common/widgets/custom_button.dart';
 import 'package:course_online/core/common/widgets/custom_textfield.dart';
+import 'package:course_online/core/utils/constants/colors.dart';
+import 'package:course_online/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../edit_product/widget/upload_photo_widget.dart';
@@ -13,7 +16,7 @@ class AddProductScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffF5F6FA),
+      backgroundColor: AppColors.scaffoldBackground,
       body: SafeArea(
         child: Column(
           children: [
@@ -23,13 +26,13 @@ class AddProductScreen extends StatelessWidget {
               child: Row(
                 children: [
                   IconButton(
-                    onPressed: () => Get.back(),
+                    onPressed: () => Get.offNamed(AppRoute.homeScreen),
                     icon: const Icon(Icons.arrow_back),
                   ),
                   const Spacer(),
-                  const Text(
+                  Text(
                     "Add New Product",
-                    style: TextStyle(
+                    style: getTextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),

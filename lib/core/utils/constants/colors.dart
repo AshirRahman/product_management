@@ -3,53 +3,40 @@ import 'package:flutter/material.dart';
 class AppColors {
   AppColors._();
 
-  // Brand Colors
-  static const Color primary =
-      Color(0xFF1E3A5F); // Darker primary for a more professional look
-  static const Color secondary =
-      Color(0xFFFEC601); // Bright yellow for highlights and accents
-  static const Color accent =
-      Color(0xFF89A7FF); // Softer blue for a modern touch
+  // Primary brand colors
+  static const Color primary = Color(0xff2D6CDF);
+  static const Color accentBlue = Color(0xFF4A90D9);
+  static const Color tagPurple = Color(0xff6F6CD9);
+  static const Color inputBorder = Color(0xffD6DCE5);
+  static const Color dialogIconBg = Color(0x1A2196F3); // blue with 10% opacity
+  static const Color viewDetailsBg = Color(0xffE8F0FE); // light blue button bg
+  static const Color cardShadow = Color(0x0D000000); // black with 5% opacity
 
-  // Gradient Colors
-  static const Gradient linearGradient = LinearGradient(
-    begin: Alignment(0.0, 0.0),
-    end: Alignment(0.707, -0.707),
-    colors: [
-      Color(0xfffff9a9e),
-      Color(0xFFFAD0C4),
-      Color(0xFFFAD0C4),
-    ],
-  );
-  // Text Colors
-  static const Color textPrimary =
-      Color(0xFF212121); // Darker shade for better readability
-  static const Color textSecondary =
-      Color(0xFF757575); // Neutral grey for secondary text
-  static const Color textWhite = Colors.white;
+  // Scaffold & Background
+  static const Color scaffoldBackground = Color(0xffF5F6FA);
 
-  // Background Colors
-  static const Color backgroundLight =
-      Color(0xFFF9FAFB); // Light neutral for clean look
-  static const Color backgroundDark =
-      Color(0xFF121212); // Dark background for contrast in dark mode
-  static const Color primaryBackground =
-      Color(0xFFFFFFFF); // Pure white for primary content areas
+  // Whites
+  static const Color white = Colors.white;
+  static const Color white70 = Colors.white70;
+  static const Color white60 = Colors.white60;
+  static const Color white54 = Colors.white54;
 
-  // Surface Colors
-  static const Color surfaceLight =
-      Color(0xFFE0E0E0); // Light grey for elevated surfaces
-  static const Color surfaceDark =
-      Color(0xFF2C2C2C); // Dark grey for elevated surfaces in dark mode
+  // Blacks
+  static const Color black = Colors.black;
+  static const Color black87 = Colors.black87;
+  static const Color black54 = Colors.black54;
+  static const Color black45 = Colors.black45;
 
-  // Container Colors
-  static const Color lightContainer =
-      Color(0xFFF1F8E9); // Soft green for a subtle highlight
+  // Greys
+  static const Color grey = Colors.grey;
+  static const Color lightGreyText = Color.fromARGB(255, 186, 187, 189);
+  static final Color grey100 = Colors.grey.shade100;
+  static final Color grey200 = Colors.grey.shade200;
+  static final Color grey300 = Colors.grey.shade300;
+  static final Color grey400 = Colors.grey.shade400;
 
-  // Utility Colors
-  static const Color success = Color(0xFF4CAF50); // Green for success messages
-  static const Color warning = Color(0xFFFFA726); // Orange for warnings
-  static const Color error = Color(0xFFF44336); // Red for error messages
-  static const Color info =
-      Color(0xFF29B6F6); // Blue for informational messages
+  // Semantic
+  static const Color success = Colors.green;
+  static const Color error = Colors.red;
+  static const Color warning = Colors.orange;
 }

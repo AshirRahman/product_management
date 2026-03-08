@@ -53,6 +53,30 @@ class NetworkCaller {
     }
   }
 
+  // Multipart PUT method (form-data)
+  Future<ResponseData> multipartPutRequest(
+    String url, {
+    required String dataJson,
+    String? filePath,
+    String? token,
+  }) async {
+    log('MULTIPART PUT Request: $url');
+    try {
+      final request = MultipartRequest('PUT', Uri.parse(url));
+      request.headers['Authorization'] = 'Bearer $token';
+      request.fields['data'] = dataJson;
+      if (filePath != null) {
+        request.files.add(await MultipartFile.fromPath('image', filePath));
+      }
+      final streamedResponse =
+          await request.send().timeout(Duration(seconds: timeoutDuration));
+      final response = await Response.fromStream(streamedResponse);
+      return _handleResponse(response);
+    } catch (e) {
+      return _handleError(e);
+    }
+  }
+
   // POST method
   Future<ResponseData> postRequest(String url,
       {Map<String, dynamic>? body, String? token}) async {

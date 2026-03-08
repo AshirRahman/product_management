@@ -1,6 +1,9 @@
+import 'package:course_online/core/common/styles/global_text_style.dart';
 import 'package:course_online/core/common/widgets/app_image.dart';
 import 'package:course_online/core/common/widgets/custom_button.dart';
 import 'package:course_online/core/common/widgets/custom_textfield.dart';
+import 'package:course_online/core/utils/constants/colors.dart';
+import 'package:course_online/core/utils/constants/image_path.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controller/signin_controller.dart';
@@ -13,7 +16,7 @@ class SigninScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffF5F6FA),
+      backgroundColor: AppColors.scaffoldBackground,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -22,16 +25,16 @@ class SigninScreen extends StatelessWidget {
               children: [
                 const SizedBox(height: 40),
 
-                AppImage(
-                  path: "assets/images/book.png",
+                const AppImage(
+                  path: ImagePath.bulb,
                   height: 100,
                 ),
 
                 const SizedBox(height: 20),
 
-                const Text(
+                Text(
                   "Welcome Back!",
-                  style: TextStyle(
+                  style: getTextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
                   ),
@@ -39,10 +42,10 @@ class SigninScreen extends StatelessWidget {
 
                 const SizedBox(height: 10),
 
-                const Text(
+                Text(
                   "Please login first to start your Theory Test.",
-                  style: TextStyle(
-                    color: Colors.grey,
+                  style: getTextStyle(
+                    color: AppColors.grey,
                   ),
                 ),
 
@@ -77,6 +80,7 @@ class SigninScreen extends StatelessWidget {
                   children: [
                     Obx(
                       () => Checkbox(
+                        activeColor: AppColors.primary,
                         value: controller.rememberMe.value,
                         onChanged: (v) => controller.toggleRemember(),
                       ),
@@ -87,7 +91,10 @@ class SigninScreen extends StatelessWidget {
                       onPressed: () {
                         Get.toNamed("/forgot-password");
                       },
-                      child: const Text("Forgot Password"),
+                      child: Text(
+                        "Forgot Password",
+                        style: getTextStyle(color: AppColors.lightGreyText),
+                      ),
                     )
                   ],
                 ),
@@ -114,10 +121,10 @@ class SigninScreen extends StatelessWidget {
                       onTap: () {
                         Get.toNamed("/signup");
                       },
-                      child: const Text(
+                      child: Text(
                         "Create Account",
-                        style: TextStyle(
-                          color: Color(0xff2D6CDF),
+                        style: getTextStyle(
+                          color: AppColors.primary,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

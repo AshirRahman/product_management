@@ -1,4 +1,6 @@
+import 'package:course_online/core/common/styles/global_text_style.dart';
 import 'package:course_online/core/common/widgets/custom_button.dart';
+import 'package:course_online/core/utils/constants/colors.dart';
 import 'package:course_online/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,55 +15,82 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffF5F6FA),
+      backgroundColor: AppColors.scaffoldBackground,
       body: SafeArea(
         child: Column(
           children: [
             /// Header
-            Container(
-              padding: const EdgeInsets.all(20),
-              decoration: const BoxDecoration(
-                color: Color(0xff2D6CDF),
-                borderRadius: BorderRadius.vertical(
-                  bottom: Radius.circular(25),
-                ),
-              ),
-              child: Row(
-                children: [
-                  CircleAvatar(
-                    backgroundImage:
-                        const AssetImage("assets/images/profile.png"),
-                    onBackgroundImageError: (_, __) {},
-                    child: const Icon(Icons.person, color: Colors.white),
+            Obx(
+              () => Container(
+                padding: const EdgeInsets.all(20),
+                decoration: const BoxDecoration(
+                  color: AppColors.primary,
+                  borderRadius: BorderRadius.vertical(
+                    bottom: Radius.circular(25),
                   ),
-                  const SizedBox(width: 10),
-                  const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Hi, Wade Warren!",
-                        style: TextStyle(color: Colors.white),
+                ),
+                child: Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () => Get.toNamed(AppRoute.profileScreen),
+                      child: ClipOval(
+                        child: SizedBox(
+                          width: 40,
+                          height: 40,
+                          child: (controller.profile.value?.profileImage !=
+                                      null &&
+                                  controller
+                                      .profile.value!.profileImage!.isNotEmpty)
+                              ? Image.network(
+                                  controller.profile.value!.profileImage!,
+                                  fit: BoxFit.cover,
+                                  errorBuilder: (_, __, ___) => Container(
+                                    color: AppColors.grey300,
+                                    child: const Icon(Icons.person,
+                                        color: AppColors.white, size: 24),
+                                  ),
+                                  loadingBuilder: (_, child, loadingProgress) {
+                                    if (loadingProgress == null) return child;
+                                    return Container(color: AppColors.grey300);
+                                  },
+                                )
+                              : Container(
+                                  color: AppColors.grey400,
+                                  child: const Icon(Icons.person,
+                                      color: AppColors.white, size: 24),
+                                ),
+                        ),
                       ),
-                      Text(
-                        "Golder Avenue, Abuja",
-                        style: TextStyle(color: Colors.white70),
-                      ),
-                    ],
-                  )
-                ],
+                    ),
+                    const SizedBox(width: 10),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Hi, ${controller.profile.value?.fullName ?? '...'}!",
+                          style: getTextStyle(color: AppColors.white),
+                        ),
+                        Text(
+                          controller.profile.value?.country ?? '',
+                          style: getTextStyle(color: AppColors.white70),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
 
             const SizedBox(height: 15),
 
             /// Title
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   "My Services",
-                  style: TextStyle(
+                  style: getTextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
