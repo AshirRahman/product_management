@@ -13,7 +13,7 @@ class AppColors {
   static const Color cardShadow = Color(0x0D000000); // black with 5% opacity
 
   // Scaffold & Background
-  static const Color scaffoldBackground = Color(0xffF5F6FA);
+  static const Color scaffoldBackground = Colors.white;
 
   // Whites
   static const Color white = Colors.white;

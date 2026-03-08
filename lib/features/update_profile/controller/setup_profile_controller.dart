@@ -1,5 +1,7 @@
 import 'dart:io';
 import 'package:course_online/core/models/response_data.dart';
+import 'package:course_online/features/home/controller/home_controller.dart';
+import 'package:course_online/features/profile/controller/profile_controller.dart';
 import 'package:course_online/features/update_profile/services/setup_profile_services.dart';
 import 'package:course_online/routes/app_routes.dart';
 import 'package:flutter/material.dart';
@@ -58,6 +60,10 @@ class SetupProfileController extends GetxController {
       if (fromVerify) {
         Get.offAllNamed(AppRoute.homeScreen);
       } else {
+        if (Get.isRegistered<HomeController>()) {
+          Get.find<HomeController>().fetchProfile();
+        }
+        Get.delete<ProfileController>(force: true);
         Get.offNamed(AppRoute.profileScreen);
       }
     } else {

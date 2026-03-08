@@ -4,6 +4,7 @@ import 'package:course_online/core/common/widgets/custom_textfield.dart';
 import 'package:course_online/core/utils/constants/colors.dart';
 import 'package:course_online/routes/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../controller/edit_product_controller.dart';
 import '../widget/upload_photo_widget.dart';
@@ -22,7 +23,7 @@ class EditProductScreen extends StatelessWidget {
           children: [
             /// AppBar
             Padding(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.all(16.w),
               child: Row(
                 children: [
                   IconButton(
@@ -44,7 +45,7 @@ class EditProductScreen extends StatelessWidget {
 
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
@@ -56,61 +57,61 @@ class EditProductScreen extends StatelessWidget {
                               : controller.imagePath.value,
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      SizedBox(height: 20.h),
                       CustomTextField(
                         label: "Product Name",
                         hintText: "Type product name",
                         controller: controller.nameController,
                       ),
-                      const SizedBox(height: 15),
+                      SizedBox(height: 15.h),
                       CustomTextField(
                         label: "Description",
                         hintText: "Type description",
                         controller: controller.descriptionController,
                       ),
-                      const SizedBox(height: 15),
+                      SizedBox(height: 15.h),
                       CustomTextField(
                         label: "Price",
                         hintText: "Type price",
                         controller: controller.priceController,
                       ),
-                      const SizedBox(height: 15),
+                      SizedBox(height: 15.h),
                       CustomTextField(
                         label: "Brand",
                         hintText: "Type brand",
                         controller: controller.brandController,
                       ),
-                      const SizedBox(height: 15),
+                      SizedBox(height: 15.h),
                       CustomTextField(
                         label: "Category",
                         hintText: "e.g. Electronics",
                         controller: controller.categoryController,
                       ),
-                      const SizedBox(height: 15),
+                      SizedBox(height: 15.h),
                       CustomTextField(
                         label: "Stock",
                         hintText: "Type stock quantity",
                         controller: controller.stockController,
                       ),
-                      const SizedBox(height: 15),
+                      SizedBox(height: 15.h),
                       CustomTextField(
                         label: "Discount (%)",
                         hintText: "Type discount percent",
                         controller: controller.discountController,
                       ),
-                      const SizedBox(height: 15),
+                      SizedBox(height: 15.h),
                       CustomTextField(
                         label: "Weight",
                         hintText: "Type weight",
                         controller: controller.weightController,
                       ),
-                      const SizedBox(height: 15),
+                      SizedBox(height: 15.h),
                       CustomTextField(
                         label: "Dimensions",
                         hintText: "Type dimensions",
                         controller: controller.dimensionController,
                       ),
-                      const SizedBox(height: 30),
+                      SizedBox(height: 30.h),
                       Obx(
                         () => CustomButton(
                           title: controller.isLoading.value
@@ -121,7 +122,7 @@ class EditProductScreen extends StatelessWidget {
                               : controller.submitProduct,
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      SizedBox(height: 20.h),
                     ],
                   ),
                 ),

@@ -4,6 +4,7 @@ import 'package:course_online/core/common/widgets/custom_textfield.dart';
 import 'package:course_online/core/utils/constants/colors.dart';
 import 'package:course_online/routes/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../controller/setup_profile_controller.dart';
 
@@ -18,12 +19,12 @@ class SetupProfileScreen extends StatelessWidget {
       backgroundColor: AppColors.scaffoldBackground,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25),
+          padding: EdgeInsets.symmetric(horizontal: 25.w),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 10),
+                SizedBox(height: 10.h),
 
                 /// AppBar row — back button + title
                 Row(
@@ -34,7 +35,7 @@ class SetupProfileScreen extends StatelessWidget {
                         icon: const Icon(Icons.arrow_back),
                       )
                     else
-                      const SizedBox(width: 48),
+                      SizedBox(width: 48.w),
                     Expanded(
                       child: Center(
                         child: Text(
@@ -46,11 +47,11 @@ class SetupProfileScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 48),
+                    SizedBox(width: 48.w),
                   ],
                 ),
 
-                const SizedBox(height: 20),
+                SizedBox(height: 20.h),
 
                 /// Profile Image
                 Center(
@@ -60,7 +61,7 @@ class SetupProfileScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           CircleAvatar(
-                            radius: 45,
+                            radius: 45.r,
                             backgroundColor: AppColors.grey300,
                             backgroundImage:
                                 controller.profileImage.value != null
@@ -74,7 +75,7 @@ class SetupProfileScreen extends StatelessWidget {
                                   )
                                 : null,
                           ),
-                          const SizedBox(height: 8),
+                          SizedBox(height: 8.h),
                           Text(
                             "Upload profile picture",
                             style: getTextStyle(
@@ -87,7 +88,7 @@ class SetupProfileScreen extends StatelessWidget {
                   ),
                 ),
 
-                const SizedBox(height: 30),
+                SizedBox(height: 30.h),
 
                 /// Full Name
                 CustomTextField(
@@ -96,7 +97,7 @@ class SetupProfileScreen extends StatelessWidget {
                   controller: controller.fullNameController,
                 ),
 
-                const SizedBox(height: 20),
+                SizedBox(height: 20.h),
 
                 /// Country
                 CustomTextField(
@@ -105,7 +106,7 @@ class SetupProfileScreen extends StatelessWidget {
                   controller: controller.countryController,
                 ),
 
-                const SizedBox(height: 30),
+                SizedBox(height: 30.h),
 
                 /// Submit Button
                 Obx(
@@ -115,7 +116,7 @@ class SetupProfileScreen extends StatelessWidget {
                   ),
                 ),
 
-                const SizedBox(height: 20),
+                SizedBox(height: 20.h),
               ],
             ),
           ),

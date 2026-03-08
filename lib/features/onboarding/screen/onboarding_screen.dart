@@ -4,6 +4,7 @@ import 'package:course_online/core/common/widgets/app_image.dart';
 import 'package:course_online/core/utils/constants/colors.dart';
 import 'package:course_online/core/utils/constants/image_path.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../controller/onboarding_controller.dart';
@@ -36,7 +37,7 @@ class OnboardingScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            const SizedBox(height: 40),
+            SizedBox(height: 40.h),
             Expanded(
               child: CarouselSlider.builder(
                 itemCount: onboardingData.length,
@@ -52,12 +53,12 @@ class OnboardingScreen extends StatelessWidget {
                   final item = onboardingData[index];
 
                   return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    padding: EdgeInsets.symmetric(horizontal: 25.w),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        AppImage(path: item["image"]!, height: 260),
-                        const SizedBox(height: 40),
+                        AppImage(path: item["image"]!, height: 260.h),
+                        SizedBox(height: 40.h),
                         Text(
                           item["title"]!,
                           textAlign: TextAlign.center,
@@ -66,7 +67,7 @@ class OnboardingScreen extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const SizedBox(height: 15),
+                        SizedBox(height: 15.h),
                         Text(
                           item["subtitle"]!,
                           textAlign: TextAlign.center,
@@ -85,23 +86,23 @@ class OnboardingScreen extends StatelessWidget {
               () => AnimatedSmoothIndicator(
                 activeIndex: controller.currentIndex.value,
                 count: onboardingData.length,
-                effect: const ExpandingDotsEffect(
+                effect: ExpandingDotsEffect(
                   activeDotColor: AppColors.primary,
-                  dotHeight: 8,
-                  dotWidth: 8,
+                  dotHeight: 8.h,
+                  dotWidth: 8.w,
                 ),
               ),
             ),
-            const SizedBox(height: 30),
+            SizedBox(height: 30.h),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
+              padding: EdgeInsets.symmetric(horizontal: 25.w),
               child: Obx(
                 () => ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary,
-                    minimumSize: const Size(double.infinity, 55),
+                    minimumSize: Size(double.infinity, 55.h),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(30.r),
                     ),
                   ),
                   onPressed: () {
@@ -117,7 +118,7 @@ class OnboardingScreen extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 40),
+            SizedBox(height: 40.h),
           ],
         ),
       ),

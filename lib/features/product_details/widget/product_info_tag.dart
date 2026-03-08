@@ -1,6 +1,7 @@
 import 'package:course_online/core/common/styles/global_text_style.dart';
 import 'package:course_online/core/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductInfoTag extends StatelessWidget {
   final String title;
@@ -13,13 +14,13 @@ class ProductInfoTag extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 14,
-        vertical: 8,
+      padding: EdgeInsets.symmetric(
+        horizontal: 14.w,
+        vertical: 8.h,
       ),
       decoration: BoxDecoration(
         color: AppColors.tagPurple,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(20.r),
       ),
       child: Text(
         title,

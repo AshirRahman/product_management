@@ -1,5 +1,6 @@
 import 'package:course_online/core/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppImage extends StatelessWidget {
   final String path;
@@ -72,7 +73,7 @@ class AppImage extends StatelessWidget {
       child: Icon(
         Icons.image_not_supported_outlined,
         color: AppColors.grey400,
-        size: (height != null && height! < 60) ? 20 : 48,
+        size: (height != null && height! < 60) ? 20.sp : 48.sp,
       ),
     );
   }

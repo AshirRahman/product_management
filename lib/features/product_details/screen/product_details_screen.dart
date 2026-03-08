@@ -3,6 +3,7 @@ import 'package:course_online/core/common/widgets/custom_button.dart';
 import 'package:course_online/core/utils/constants/colors.dart';
 import 'package:course_online/routes/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../controller/product_details_controller.dart';
 import '../widget/product_header.dart';
@@ -24,9 +25,9 @@ class ProductDetailsScreen extends StatelessWidget {
           children: [
             /// AppBar
             Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 10,
+              padding: EdgeInsets.symmetric(
+                horizontal: 20.w,
+                vertical: 10.h,
               ),
               child: Row(
                 children: [
@@ -53,7 +54,7 @@ class ProductDetailsScreen extends StatelessWidget {
 
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,7 +64,7 @@ class ProductDetailsScreen extends StatelessWidget {
                         image: product.image ?? "",
                       ),
 
-                      const SizedBox(height: 15),
+                      SizedBox(height: 15.h),
 
                       /// Title + Price
                       Row(
@@ -87,7 +88,7 @@ class ProductDetailsScreen extends StatelessWidget {
                         ],
                       ),
 
-                      const SizedBox(height: 10),
+                      SizedBox(height: 10.h),
 
                       Text(
                         product.stock > 0 ? "✓ In Stock" : "✗ Out of Stock",
@@ -98,7 +99,7 @@ class ProductDetailsScreen extends StatelessWidget {
                         ),
                       ),
 
-                      const SizedBox(height: 20),
+                      SizedBox(height: 20.h),
 
                       Text(
                         product.name,
@@ -107,11 +108,11 @@ class ProductDetailsScreen extends StatelessWidget {
                         ),
                       ),
 
-                      const SizedBox(height: 10),
+                      SizedBox(height: 10.h),
 
                       Wrap(
-                        spacing: 10,
-                        runSpacing: 10,
+                        spacing: 10.w,
+                        runSpacing: 10.h,
                         children: [
                           ProductInfoTag(title: "${product.category} Category"),
                           ProductInfoTag(title: product.brand),
@@ -122,7 +123,7 @@ class ProductDetailsScreen extends StatelessWidget {
                         ],
                       ),
 
-                      const SizedBox(height: 20),
+                      SizedBox(height: 20.h),
 
                       Text(
                         "Description",
@@ -131,7 +132,7 @@ class ProductDetailsScreen extends StatelessWidget {
                         ),
                       ),
 
-                      const SizedBox(height: 8),
+                      SizedBox(height: 8.h),
 
                       Text(
                         product.description,
@@ -140,7 +141,7 @@ class ProductDetailsScreen extends StatelessWidget {
                         ),
                       ),
 
-                      const SizedBox(height: 40),
+                      SizedBox(height: 40.h),
                     ],
                   ),
                 ),
@@ -148,7 +149,7 @@ class ProductDetailsScreen extends StatelessWidget {
             ),
 
             Padding(
-              padding: const EdgeInsets.all(20),
+              padding: EdgeInsets.all(20.w),
               child: CustomButton(
                 title: "Edit Product",
                 onTap: () => Get.toNamed(

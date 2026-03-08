@@ -4,6 +4,7 @@ import 'package:course_online/core/common/widgets/custom_button.dart';
 import 'package:course_online/core/utils/constants/colors.dart';
 import 'package:course_online/core/utils/constants/image_path.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../controller/enable_location_controller.dart';
 
@@ -19,16 +20,16 @@ class EnableLocationScreen extends StatelessWidget {
       backgroundColor: AppColors.scaffoldBackground,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25),
+          padding: EdgeInsets.symmetric(horizontal: 25.w),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               AppImage(
                 path: ImagePath.map,
-                height: 220,
+                height: 220.h,
               ),
 
-              const SizedBox(height: 30),
+              SizedBox(height: 30.h),
 
               Text(
                 "Enable Location",
@@ -38,7 +39,7 @@ class EnableLocationScreen extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 10),
+              SizedBox(height: 10.h),
 
               Text(
                 "Kindly allow us to access your location to provide you with suggestions for nearby salons",
@@ -48,7 +49,7 @@ class EnableLocationScreen extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 40),
+              SizedBox(height: 40.h),
 
               /// Enable Button
               CustomButton(
@@ -56,7 +57,7 @@ class EnableLocationScreen extends StatelessWidget {
                 onTap: controller.enableLocation,
               ),
 
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
 
               /// Skip
               GestureDetector(

@@ -1,6 +1,7 @@
 import 'package:course_online/core/common/styles/global_text_style.dart';
 import 'package:course_online/core/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomButton extends StatelessWidget {
   final String title;
@@ -34,12 +35,12 @@ class CustomButton extends StatelessWidget {
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: color,
-          borderRadius: BorderRadius.circular(radius),
+          borderRadius: BorderRadius.circular(radius.r),
         ),
         child: isLoading
-            ? const SizedBox(
-                height: 22,
-                width: 22,
+            ? SizedBox(
+                height: 22.h,
+                width: 22.w,
                 child: CircularProgressIndicator(
                   strokeWidth: 2,
                   color: AppColors.white,

@@ -3,6 +3,7 @@ import 'package:course_online/core/common/widgets/custom_button.dart';
 import 'package:course_online/core/common/widgets/custom_textfield.dart';
 import 'package:course_online/core/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../controller/reset_password_controller.dart';
 
@@ -17,10 +18,10 @@ class ResetPasswordScreen extends StatelessWidget {
       backgroundColor: AppColors.scaffoldBackground,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25),
+          padding: EdgeInsets.symmetric(horizontal: 25.w),
           child: Column(
             children: [
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
 
               /// Back
               Align(
@@ -31,7 +32,7 @@ class ResetPasswordScreen extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 30),
+              SizedBox(height: 30.h),
 
               Text(
                 "Reset Password",
@@ -41,7 +42,7 @@ class ResetPasswordScreen extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 10),
+              SizedBox(height: 10.h),
 
               Text(
                 "Your password must be at least 8 characters long and include a combination of letters, numbers",
@@ -49,7 +50,7 @@ class ResetPasswordScreen extends StatelessWidget {
                 style: getTextStyle(color: AppColors.grey),
               ),
 
-              const SizedBox(height: 40),
+              SizedBox(height: 40.h),
 
               /// New Password
               Obx(
@@ -63,7 +64,7 @@ class ResetPasswordScreen extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
 
               /// Confirm Password
               Obx(
@@ -77,7 +78,7 @@ class ResetPasswordScreen extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 40),
+              SizedBox(height: 40.h),
 
               /// Submit Button
               Obx(

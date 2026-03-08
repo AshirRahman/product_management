@@ -1,4 +1,5 @@
 import 'package:course_online/core/models/response_data.dart';
+import 'package:course_online/core/services/local_product_service.dart';
 import 'package:course_online/features/profile/model/profile_model.dart';
 import 'package:course_online/features/profile/services/profile_service.dart';
 import 'package:get/get.dart';
@@ -14,7 +15,7 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    fetchProducts();
+    loadProducts();
     fetchProfile();
   }
 
@@ -22,17 +23,34 @@ class HomeController extends GetxController {
     selectedTab.value = index;
   }
 
-  Future<void> fetchProducts() async {
+  /// Load products: try API first, fallback to local Hive cache
+  Future<void> loadProducts() async {
     isLoading.value = true;
+
+    // Show cached data immediately if available
+    final cached = LocalProductService.getProducts();
+    if (cached.isNotEmpty) {
+      products.value = cached;
+    }
+
+    // Fetch from API
     ResponseData response = await ProductServices.getProducts();
     isLoading.value = false;
 
     if (response.isSuccess) {
       List data = response.responseData["data"];
-      products.value = data.map((e) => ProductModel.fromJson(e)).toList();
-    } else {
+      final fetched = data.map((e) => ProductModel.fromJson(e)).toList();
+      products.value = fetched;
+
+      // Save to Hive for offline use
+      await LocalProductService.saveProducts(fetched);
+    } else if (cached.isEmpty) {
       Get.snackbar("Error", response.errorMessage);
     }
+  }
+
+  Future<void> fetchProducts() async {
+    await loadProducts();
   }
 
   Future<void> fetchProfile() async {

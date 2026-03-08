@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../core/common/styles/global_text_style.dart';
 import '../../../core/common/widgets/app_image.dart';
@@ -27,7 +28,7 @@ class ProductCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: AppColors.white,
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(18.r),
         boxShadow: [
           BoxShadow(
             color: AppColors.cardShadow,
@@ -45,8 +46,8 @@ class ProductCard extends StatelessWidget {
               children: [
                 Positioned.fill(
                   child: ClipRRect(
-                    borderRadius: const BorderRadius.vertical(
-                      top: Radius.circular(18),
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(18.r),
                     ),
                     child: AppImage(
                       path: product.image ?? "",
@@ -58,16 +59,16 @@ class ProductCard extends StatelessWidget {
 
                 /// CATEGORY
                 Positioned(
-                  top: 10,
-                  left: 10,
+                  top: 10.h,
+                  left: 10.w,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 6,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 12.w,
+                      vertical: 6.h,
                     ),
                     decoration: BoxDecoration(
                       color: AppColors.white,
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(20.r),
                     ),
                     child: Text(
                       product.category.toUpperCase(),
@@ -82,16 +83,16 @@ class ProductCard extends StatelessWidget {
 
                 /// PRICE BADGE
                 Positioned(
-                  bottom: 8,
-                  right: 10,
+                  bottom: 8.h,
+                  right: 10.w,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 14,
-                      vertical: 8,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 14.w,
+                      vertical: 8.h,
                     ),
                     decoration: BoxDecoration(
                       color: AppColors.primary,
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(12.r),
                     ),
                     child: Text(
                       "\$${finalPrice.toStringAsFixed(2)}",
@@ -107,16 +108,16 @@ class ProductCard extends StatelessWidget {
                 /// DISCOUNT TAG
                 if (product.isDiscounted)
                   Positioned(
-                    top: 10,
-                    right: 10,
+                    top: 10.h,
+                    right: 10.w,
                     child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                        vertical: 4,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 8.w,
+                        vertical: 4.h,
                       ),
                       decoration: BoxDecoration(
                         color: AppColors.error,
-                        borderRadius: BorderRadius.circular(6),
+                        borderRadius: BorderRadius.circular(6.r),
                       ),
                       child: Text(
                         "-${product.discountPercent}%",
@@ -132,11 +133,11 @@ class ProductCard extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 8),
+          SizedBox(height: 8.h),
 
           /// PRODUCT NAME
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
+            padding: EdgeInsets.symmetric(horizontal: 12.w),
             child: Text(
               product.name,
               maxLines: 1,
@@ -148,20 +149,20 @@ class ProductCard extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 4),
+          SizedBox(height: 4.h),
 
           /// STOCK STATUS
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
+            padding: EdgeInsets.symmetric(horizontal: 12.w),
             child: Row(
               children: [
                 Icon(
                   product.stock > 0 ? Icons.check : Icons.close,
                   color:
                       product.stock > 0 ? AppColors.success : AppColors.error,
-                  size: 16,
+                  size: 16.sp,
                 ),
-                const SizedBox(width: 4),
+                SizedBox(width: 4.w),
                 Text(
                   product.stock > 0 ? "In Stock" : "Out of Stock",
                   style: getTextStyle(
@@ -175,11 +176,11 @@ class ProductCard extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 8),
+          SizedBox(height: 8.h),
 
           /// BUTTONS
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
+            padding: EdgeInsets.symmetric(horizontal: 6.w),
             child: Row(
               children: [
                 /// VIEW DETAILS
@@ -192,10 +193,10 @@ class ProductCard extends StatelessWidget {
                       );
                     },
                     child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      padding: EdgeInsets.symmetric(vertical: 8.h),
                       decoration: BoxDecoration(
                         color: AppColors.viewDetailsBg,
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(20.r),
                       ),
                       child: Center(
                         child: Text(
@@ -211,7 +212,7 @@ class ProductCard extends StatelessWidget {
                   ),
                 ),
 
-                const SizedBox(width: 8),
+                SizedBox(width: 8.w),
 
                 /// EDIT
                 GestureDetector(
@@ -222,15 +223,15 @@ class ProductCard extends StatelessWidget {
                     );
                   },
                   child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 14,
-                      vertical: 8,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 14.w,
+                      vertical: 8.h,
                     ),
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: AppColors.grey300,
                       ),
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(20.r),
                     ),
                     child: Text(
                       "Edit",
@@ -246,7 +247,7 @@ class ProductCard extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 8),
+          SizedBox(height: 8.h),
         ],
       ),
     );

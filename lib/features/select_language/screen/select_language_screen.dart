@@ -3,6 +3,7 @@ import 'package:course_online/core/common/widgets/app_image.dart';
 import 'package:course_online/core/common/widgets/custom_button.dart';
 import 'package:course_online/core/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../controller/select_language_controller.dart';
 
@@ -18,11 +19,11 @@ class SelectLanguageScreen extends StatelessWidget {
       backgroundColor: AppColors.scaffoldBackground,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25),
+          padding: EdgeInsets.symmetric(horizontal: 25.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 60),
+              SizedBox(height: 60.h),
 
               Center(
                 child: Text(
@@ -34,7 +35,7 @@ class SelectLanguageScreen extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 8),
+              SizedBox(height: 8.h),
 
               Center(
                 child: Text(
@@ -45,7 +46,7 @@ class SelectLanguageScreen extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 25),
+              SizedBox(height: 25.h),
 
               /// Language List
               Expanded(
@@ -61,24 +62,24 @@ class SelectLanguageScreen extends StatelessWidget {
                         return GestureDetector(
                           onTap: () => controller.selectLanguage(index),
                           child: Container(
-                            margin: const EdgeInsets.only(bottom: 12),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 15, vertical: 12),
+                            margin: EdgeInsets.only(bottom: 12.h),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 15.w, vertical: 12.h),
                             decoration: BoxDecoration(
                               color: selected
                                   ? AppColors.white
                                   : AppColors.grey100,
-                              borderRadius: BorderRadius.circular(15),
+                              borderRadius: BorderRadius.circular(15.r),
                             ),
                             child: Row(
                               children: [
                                 AppImage(
                                   path: language["flag"]!,
-                                  height: 30,
-                                  width: 30,
+                                  height: 30.h,
+                                  width: 30.w,
                                   fit: BoxFit.contain,
                                 ),
-                                const SizedBox(width: 12),
+                                SizedBox(width: 12.w),
                                 Text(
                                   language["name"]!,
                                   style: getTextStyle(fontSize: 16),
@@ -86,19 +87,19 @@ class SelectLanguageScreen extends StatelessWidget {
                                 const Spacer(),
                                 selected
                                     ? Container(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 12, vertical: 6),
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 12.w, vertical: 6.h),
                                         decoration: BoxDecoration(
                                           color: AppColors.primary,
                                           borderRadius:
-                                              BorderRadius.circular(20),
+                                              BorderRadius.circular(20.r),
                                         ),
                                         child: Row(
                                           children: [
-                                            const Icon(Icons.check,
+                                            Icon(Icons.check,
                                                 color: AppColors.white,
-                                                size: 16),
-                                            const SizedBox(width: 5),
+                                                size: 16.sp),
+                                            SizedBox(width: 5.w),
                                             Text(
                                               "Selected",
                                               style: getTextStyle(
@@ -108,12 +109,12 @@ class SelectLanguageScreen extends StatelessWidget {
                                         ),
                                       )
                                     : Container(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 12, vertical: 6),
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 12.w, vertical: 6.h),
                                         decoration: BoxDecoration(
                                           color: AppColors.grey300,
                                           borderRadius:
-                                              BorderRadius.circular(20),
+                                              BorderRadius.circular(20.r),
                                         ),
                                         child: const Text("Select"),
                                       )
@@ -127,7 +128,7 @@ class SelectLanguageScreen extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 10),
+              SizedBox(height: 10.h),
 
               /// Continue Button
               CustomButton(
@@ -135,7 +136,7 @@ class SelectLanguageScreen extends StatelessWidget {
                 onTap: controller.continueNext,
               ),
 
-              const SizedBox(height: 20)
+              SizedBox(height: 20.h)
             ],
           ),
         ),

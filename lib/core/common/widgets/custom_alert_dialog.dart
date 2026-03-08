@@ -1,6 +1,7 @@
 import 'package:course_online/core/common/styles/global_text_style.dart';
 import 'package:course_online/core/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'custom_button.dart';
 
 class CustomAlertDialog extends StatelessWidget {
@@ -23,10 +24,10 @@ class CustomAlertDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dialog(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(20.r),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 25.h),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -43,20 +44,20 @@ class CustomAlertDialog extends StatelessWidget {
 
             /// Icon
             Container(
-              height: 90,
-              width: 90,
+              height: 90.h,
+              width: 90.w,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: AppColors.dialogIconBg,
               ),
-              child: const Icon(
+              child: Icon(
                 Icons.check,
-                size: 45,
+                size: 45.sp,
                 color: AppColors.primary,
               ),
             ),
 
-            const SizedBox(height: 20),
+            SizedBox(height: 20.h),
 
             /// Title
             Text(
@@ -68,7 +69,7 @@ class CustomAlertDialog extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
 
-            const SizedBox(height: 10),
+            SizedBox(height: 10.h),
 
             /// Message
             Text(
@@ -79,7 +80,7 @@ class CustomAlertDialog extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 25),
+            SizedBox(height: 25.h),
 
             /// Button
             CustomButton(

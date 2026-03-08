@@ -2,6 +2,7 @@ import 'package:course_online/core/common/styles/global_text_style.dart';
 import 'package:course_online/core/common/widgets/custom_button.dart';
 import 'package:course_online/core/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import '../controller/verify_code_controller.dart';
@@ -17,10 +18,10 @@ class VerifyCodeScreen extends StatelessWidget {
       backgroundColor: AppColors.scaffoldBackground,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25),
+          padding: EdgeInsets.symmetric(horizontal: 25.w),
           child: Column(
             children: [
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
 
               /// Back
               Align(
@@ -31,7 +32,7 @@ class VerifyCodeScreen extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 40),
+              SizedBox(height: 40.h),
 
               Text(
                 "Verify Code",
@@ -41,7 +42,7 @@ class VerifyCodeScreen extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 10),
+              SizedBox(height: 10.h),
 
               Text(
                 "Please enter the code we just sent to\nemail pristia@gmail.com",
@@ -49,7 +50,7 @@ class VerifyCodeScreen extends StatelessWidget {
                 style: getTextStyle(color: AppColors.grey),
               ),
 
-              const SizedBox(height: 40),
+              SizedBox(height: 40.h),
 
               /// OTP Field
               PinCodeTextField(
@@ -61,16 +62,16 @@ class VerifyCodeScreen extends StatelessWidget {
                 onChanged: (value) {},
                 pinTheme: PinTheme(
                   shape: PinCodeFieldShape.box,
-                  borderRadius: BorderRadius.circular(12),
-                  fieldHeight: 55,
-                  fieldWidth: 55,
+                  borderRadius: BorderRadius.circular(12.r),
+                  fieldHeight: 55.h,
+                  fieldWidth: 55.w,
                   activeColor: AppColors.primary,
                   selectedColor: AppColors.primary,
                   inactiveColor: AppColors.grey300,
                 ),
               ),
 
-              const SizedBox(height: 40),
+              SizedBox(height: 40.h),
 
               /// Verify Button (CustomButton)
               Obx(
@@ -81,7 +82,7 @@ class VerifyCodeScreen extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
 
               /// Resend OTP
               Obx(
@@ -97,9 +98,9 @@ class VerifyCodeScreen extends StatelessWidget {
                           ? null
                           : controller.resendOtp,
                       child: controller.isResendLoading.value
-                          ? const SizedBox(
-                              width: 16,
-                              height: 16,
+                          ? SizedBox(
+                              width: 16.w,
+                              height: 16.h,
                               child: CircularProgressIndicator(strokeWidth: 2),
                             )
                           : Text(

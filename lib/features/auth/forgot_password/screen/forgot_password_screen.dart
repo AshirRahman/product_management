@@ -3,6 +3,7 @@ import 'package:course_online/core/common/widgets/custom_button.dart';
 import 'package:course_online/core/common/widgets/custom_textfield.dart';
 import 'package:course_online/core/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../controller/forgot_password_controller.dart';
 
@@ -18,11 +19,11 @@ class ForgotPasswordScreen extends StatelessWidget {
       backgroundColor: AppColors.scaffoldBackground,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25),
+          padding: EdgeInsets.symmetric(horizontal: 25.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
 
               /// Back Button
               IconButton(
@@ -30,7 +31,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                 icon: const Icon(Icons.arrow_back),
               ),
 
-              const SizedBox(height: 30),
+              SizedBox(height: 30.h),
 
               Center(
                 child: Text(
@@ -42,7 +43,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 10),
+              SizedBox(height: 10.h),
 
               Center(
                 child: Text(
@@ -52,7 +53,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 40),
+              SizedBox(height: 40.h),
 
               /// Email Field
               CustomTextField(
@@ -62,7 +63,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                 keyboardType: TextInputType.emailAddress,
               ),
 
-              const SizedBox(height: 30),
+              SizedBox(height: 30.h),
 
               /// Continue Button
               Obx(

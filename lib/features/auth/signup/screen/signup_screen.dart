@@ -3,6 +3,7 @@ import 'package:course_online/core/common/widgets/custom_button.dart';
 import 'package:course_online/core/common/widgets/custom_textfield.dart';
 import 'package:course_online/core/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../controller/signup_controller.dart';
 
@@ -17,24 +18,24 @@ class SignupScreen extends StatelessWidget {
       backgroundColor: AppColors.scaffoldBackground,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25),
+          padding: EdgeInsets.symmetric(horizontal: 25.w),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 20),
+                SizedBox(height: 20.h),
 
                 /// Back Button
                 GestureDetector(
                   onTap: () => Get.back(),
-                  child: const CircleAvatar(
-                    radius: 20,
+                  child: CircleAvatar(
+                    radius: 20.r,
                     backgroundColor: AppColors.white,
                     child: Icon(Icons.arrow_back),
                   ),
                 ),
 
-                const SizedBox(height: 30),
+                SizedBox(height: 30.h),
 
                 Text(
                   "Welcome to Eduline",
@@ -44,7 +45,7 @@ class SignupScreen extends StatelessWidget {
                   ),
                 ),
 
-                const SizedBox(height: 10),
+                SizedBox(height: 10.h),
 
                 Text(
                   "Let's join to Eduline learning ecosystem & meet our professional mentor. It's Free!",
@@ -53,7 +54,7 @@ class SignupScreen extends StatelessWidget {
                   ),
                 ),
 
-                const SizedBox(height: 30),
+                SizedBox(height: 30.h),
 
                 /// Email
                 CustomTextField(
@@ -63,7 +64,7 @@ class SignupScreen extends StatelessWidget {
                   keyboardType: TextInputType.emailAddress,
                 ),
 
-                const SizedBox(height: 20),
+                SizedBox(height: 20.h),
 
                 /// Full Name
                 CustomTextField(
@@ -72,7 +73,7 @@ class SignupScreen extends StatelessWidget {
                   controller: controller.nameController,
                 ),
 
-                const SizedBox(height: 20),
+                SizedBox(height: 20.h),
 
                 /// Password
                 Obx(
@@ -86,17 +87,17 @@ class SignupScreen extends StatelessWidget {
                   ),
                 ),
 
-                const SizedBox(height: 10),
+                SizedBox(height: 10.h),
 
                 /// Password Hint
                 Row(
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.check_circle_outline,
                       color: AppColors.success,
-                      size: 18,
+                      size: 18.sp,
                     ),
-                    const SizedBox(width: 8),
+                    SizedBox(width: 8.w),
                     Expanded(
                       child: Text(
                         "At least 8 characters with a combination of letters and numbers",
@@ -109,7 +110,7 @@ class SignupScreen extends StatelessWidget {
                   ],
                 ),
 
-                const SizedBox(height: 30),
+                SizedBox(height: 30.h),
 
                 /// Sign Up Button
                 Obx(
@@ -120,7 +121,7 @@ class SignupScreen extends StatelessWidget {
                   ),
                 ),
 
-                const SizedBox(height: 20),
+                SizedBox(height: 20.h),
 
                 /// Sign In
                 Row(

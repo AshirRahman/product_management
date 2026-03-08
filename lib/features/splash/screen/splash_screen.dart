@@ -3,6 +3,7 @@ import 'package:course_online/core/common/widgets/app_image.dart';
 import 'package:course_online/core/utils/constants/colors.dart';
 import 'package:course_online/core/utils/constants/image_path.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import '../controller/splash_controller.dart';
@@ -18,18 +19,18 @@ class SplashScreen extends StatelessWidget {
       backgroundColor: AppColors.scaffoldBackground,
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 25),
+          padding: EdgeInsets.symmetric(horizontal: 25.w),
           child: Column(
             children: [
-              SizedBox(height: 60),
+              SizedBox(height: 60.h),
               Spacer(),
               Column(
                 children: [
                   AppImage(
                     path: ImagePath.splash,
-                    height: 120,
+                    height: 120.h,
                   ),
-                  SizedBox(height: 25),
+                  SizedBox(height: 25.h),
                   Text(
                     "Theory test in my language",
                     style: getTextStyle(
@@ -38,7 +39,7 @@ class SplashScreen extends StatelessWidget {
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  SizedBox(height: 10),
+                  SizedBox(height: 10.h),
                   Text(
                     "I must write the real test will be in English language and this app just helps you to understand the materials in your language",
                     textAlign: TextAlign.center,
@@ -52,9 +53,9 @@ class SplashScreen extends StatelessWidget {
               Spacer(),
               SpinKitFadingCircle(
                 color: AppColors.accentBlue,
-                size: 50,
+                size: 50.sp,
               ),
-              SizedBox(height: 80),
+              SizedBox(height: 80.h),
             ],
           ),
         ),

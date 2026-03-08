@@ -1,6 +1,7 @@
 import 'package:course_online/core/common/styles/global_text_style.dart';
 import 'package:course_online/core/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextField extends StatelessWidget {
   final String label;
@@ -36,7 +37,7 @@ class CustomTextField extends StatelessWidget {
             fontWeight: FontWeight.w500,
           ),
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8.h),
         TextField(
           controller: controller,
           obscureText: obscureText,
@@ -44,7 +45,7 @@ class CustomTextField extends StatelessWidget {
           decoration: InputDecoration(
             hintText: hintText,
             contentPadding:
-                const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
             suffixIcon: isPassword
                 ? IconButton(
                     onPressed: onToggle,
@@ -54,16 +55,16 @@ class CustomTextField extends StatelessWidget {
                   )
                 : suffixIcon,
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(30.r),
             ),
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(30.r),
               borderSide: const BorderSide(
                 color: AppColors.inputBorder,
               ),
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(30.r),
               borderSide: const BorderSide(
                 color: AppColors.primary,
               ),
