@@ -75,11 +75,7 @@ class SigninController extends GetxController {
       String token = response.responseData['data']['token'];
       await StorageService.saveToken(token, emailController.text.trim());
 
-      Get.snackbar("Success", response.responseData['message']);
-
       Get.offAllNamed(AppRoute.homeScreen);
-    } else {
-      Get.snackbar("Error", response.errorMessage);
     }
   }
 

@@ -81,13 +81,10 @@ class SignupController extends GetxController {
     isLoading.value = false;
 
     if (response.isSuccess) {
-      Get.snackbar("Success", response.responseData['message']);
       Get.toNamed(
         AppRoute.verifyCodeScreen,
         arguments: emailController.text.trim(),
       );
-    } else {
-      Get.snackbar("Error", response.errorMessage);
     }
   }
 

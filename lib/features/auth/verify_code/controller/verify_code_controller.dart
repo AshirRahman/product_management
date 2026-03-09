@@ -16,10 +16,7 @@ class VerifyCodeController extends GetxController {
   }
 
   Future<void> verify() async {
-    if (otpCode.value.length != 4) {
-      Get.snackbar("Error", "Enter complete code");
-      return;
-    }
+    if (otpCode.value.length != 4) return;
 
     isLoading.value = true;
 
@@ -34,25 +31,13 @@ class VerifyCodeController extends GetxController {
       String token = response.responseData['data']['token'];
       await StorageService.saveToken(token, email);
 
-      Get.snackbar("Success", response.responseData['message']);
-
       Get.offAllNamed(AppRoute.enableLocationScreen);
-    } else {
-      Get.snackbar("Error", response.errorMessage);
     }
   }
 
   Future<void> resendOtp() async {
     isResendLoading.value = true;
-
-    ResponseData response = await VerifyCodeServices.resendOtp(email: email);
-
+    await VerifyCodeServices.resendOtp(email: email);
     isResendLoading.value = false;
-
-    if (response.isSuccess) {
-      Get.snackbar("Success", "OTP resent to $email");
-    } else {
-      Get.snackbar("Error", response.errorMessage);
-    }
   }
 }

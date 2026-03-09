@@ -41,7 +41,6 @@ class SetupProfileController extends GetxController {
   Future<void> next() async {
     if (fullNameController.text.trim().isEmpty ||
         countryController.text.trim().isEmpty) {
-      Get.snackbar("Error", "Please fill in all required fields");
       return;
     }
 
@@ -56,7 +55,6 @@ class SetupProfileController extends GetxController {
     isLoading.value = false;
 
     if (response.isSuccess) {
-      Get.snackbar("Success", "Profile updated successfully");
       if (fromVerify) {
         Get.offAllNamed(AppRoute.homeScreen);
       } else {
@@ -66,8 +64,6 @@ class SetupProfileController extends GetxController {
         Get.delete<ProfileController>(force: true);
         Get.offNamed(AppRoute.profileScreen);
       }
-    } else {
-      Get.snackbar("Error", response.errorMessage);
     }
   }
 

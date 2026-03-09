@@ -53,7 +53,6 @@ class EditProductController extends GetxController {
         priceController.text.trim().isEmpty ||
         stockController.text.trim().isEmpty ||
         categoryController.text.trim().isEmpty) {
-      Get.snackbar("Error", "Please fill in all required fields");
       return;
     }
 
@@ -83,10 +82,7 @@ class EditProductController extends GetxController {
     isLoading.value = false;
 
     if (response.isSuccess) {
-      Get.snackbar("Success", "Product updated successfully");
       Get.offAllNamed(AppRoute.homeScreen);
-    } else {
-      Get.snackbar("Error", response.errorMessage);
     }
   }
 

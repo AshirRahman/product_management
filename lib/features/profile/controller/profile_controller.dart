@@ -23,8 +23,6 @@ class ProfileController extends GetxController {
 
     if (response.isSuccess) {
       profile.value = ProfileModel.fromJson(response.responseData['data']);
-    } else {
-      Get.snackbar("Error", response.errorMessage);
     }
   }
 

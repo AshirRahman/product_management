@@ -44,8 +44,6 @@ class HomeController extends GetxController {
 
       // Save to Hive for offline use
       await LocalProductService.saveProducts(fetched);
-    } else if (cached.isEmpty) {
-      Get.snackbar("Error", response.errorMessage);
     }
   }
 
